@@ -1,5 +1,6 @@
 package com.plataforma.controller.impl;
 
+import com.plataforma.controller.PermissionC;
 import com.plataforma.service.PermissionS;
 import com.plataforma.util.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/permission/")
-public class PermissionImplC implements com.plataforma.controller.PermissionC {
+public class PermissionImplC implements PermissionC {
     private final PermissionS permissionS;
 
     @Override

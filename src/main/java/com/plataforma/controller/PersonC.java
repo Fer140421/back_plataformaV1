@@ -1,11 +1,11 @@
 package com.plataforma.controller;
 
-import com.plataforma.model.plataforma.person;
+import com.plataforma.model.plataforma.Person;
 import com.plataforma.util.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-public interface personC {
+public interface PersonC {
     @GetMapping("findAll")
     ResponseEntity<ApiResponse> findAll();
 
@@ -13,10 +13,10 @@ public interface personC {
     ResponseEntity<ApiResponse> findById(@PathVariable long id);
 
     @PostMapping("save")
-    ResponseEntity<ApiResponse> save(@RequestBody person person);
+    ResponseEntity<ApiResponse> save(@RequestBody Person person);
 
     @PutMapping("update")
-    ResponseEntity<ApiResponse> update(@RequestBody person person, @PathVariable long id);
+    ResponseEntity<ApiResponse> update(@RequestBody Person person, @PathVariable long id);
 
     @PutMapping("deleteById")
     ResponseEntity<ApiResponse> deleteById(@PathVariable long id);

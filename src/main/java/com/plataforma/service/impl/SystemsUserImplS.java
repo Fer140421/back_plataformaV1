@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class SystemsUserIS implements SystemsUserS {
+public class SystemsUserImplS implements SystemsUserS {
     private final SystemUserR systemsUserR;
     private final CustomResponseBuilder customResponseBuilder;
 

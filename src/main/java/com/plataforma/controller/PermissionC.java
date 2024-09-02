@@ -1,7 +1,6 @@
 package com.plataforma.controller;
 
 import com.plataforma.model.plataforma.Permission;
-import com.plataforma.model.plataforma.Rol;
 import com.plataforma.util.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

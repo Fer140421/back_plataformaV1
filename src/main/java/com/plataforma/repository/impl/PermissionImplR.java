@@ -15,28 +15,27 @@ public class PermissionImplR implements PermissionR {
     private final JdbcTemplate db;
     private String sql;
 
-
     @Override
     public List<Permission> findAll() {
-        sql = "SELECT * FROM \"permission\" WHERE status = true;";
+        sql = "SELECT * FROM permission WHERE status = true;";
         return db.query(sql, BeanPropertyRowMapper.newInstance(Permission.class));
     }
 
     @Override
     public Permission getById(Integer id) {
-        sql = "SELECT * FROM \"permission\" WHERE id = ?;";
+        sql = "SELECT * FROM permission WHERE id = ?;";
         return (Permission) db.query(sql, BeanPropertyRowMapper.newInstance(Permission.class)) ;
     }
 
     @Override
     public Integer save(Permission obj) {
-        sql = "INSERT INTO \"permission\"(description,\"name\") VALUES (?,?) returning id;";
+        sql = "INSERT INTO permission(description,name) VALUES (?,?) returning id;";
         return db.queryForObject(sql, new Object[]{obj.getDescription(),obj.getName()},Integer.class);
     }
 
     @Override
     public boolean deleteById(Integer id) {
-        sql = "UPDATE \"permission\" SET status = false  WHERE id = ?;";
+        sql = "UPDATE permission SET status = false  WHERE id = ?;";
         return db.update(sql, id)>0;
     }
 }

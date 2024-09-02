@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/SystemUser/")
 public class SystemsUserImplC implements SystemsUserC {
     private final SystemsUserS systemsUserS;
+
     @GetMapping("findAll")
     @Override
     public ResponseEntity<ApiResponse> findAll() {return systemsUserS.findAll();}

@@ -1,8 +1,8 @@
 package com.plataforma.controller.impl;
 
-import com.plataforma.controller.personC;
-import com.plataforma.model.plataforma.person;
-import com.plataforma.service.personS;
+import com.plataforma.controller.PersonC;
+import com.plataforma.model.plataforma.Person;
+import com.plataforma.service.PersonS;
 import com.plataforma.util.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/person/")
-public class personImplC implements personC {
-    private final personS persons;
+public class PersonImplC implements PersonC {
+    private final PersonS persons;
 
     @GetMapping("findAll")
     @Override
@@ -27,13 +27,13 @@ public class personImplC implements personC {
 
     @Override
     @PostMapping("save")
-    public ResponseEntity<ApiResponse> save(@RequestBody person person) {
+    public ResponseEntity<ApiResponse> save(@RequestBody Person person) {
         return persons.save(person);
     }
 
     @Override
     @PutMapping("updateById/{id}")
-    public ResponseEntity<ApiResponse> update(@RequestBody person person, @PathVariable long id) {
+    public ResponseEntity<ApiResponse> update(@RequestBody Person person, @PathVariable long id) {
         return persons.update(person,id);
     }
 

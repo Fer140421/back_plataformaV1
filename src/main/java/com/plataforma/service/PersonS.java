@@ -1,17 +1,17 @@
 package com.plataforma.service;
 
-import com.plataforma.model.plataforma.person;
+import com.plataforma.model.plataforma.Person;
 import com.plataforma.util.ApiResponse;
 import org.springframework.http.ResponseEntity;
 
-public interface personS {
+public interface PersonS {
     ResponseEntity<ApiResponse> findAll();
 
     ResponseEntity<ApiResponse> findById(Long id);
 
-    ResponseEntity<ApiResponse> save(person obj);
+    ResponseEntity<ApiResponse> save(Person obj);
 
-    ResponseEntity<ApiResponse> update(person obj, Long id);
+    ResponseEntity<ApiResponse> update(Person obj, Long id);
 
     ResponseEntity<ApiResponse> deleteById(Long id);
 }
