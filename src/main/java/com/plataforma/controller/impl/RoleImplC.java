@@ -1,5 +1,6 @@
 package com.plataforma.controller.impl;
 
+import com.plataforma.controller.RoleC;
 import com.plataforma.model.plataforma.Rol;
 import com.plataforma.service.RoleS;
 import com.plataforma.util.ApiResponse;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/rol/")
-public class RoleImplC implements com.plataforma.controller.RoleC {
+public class RoleImplC implements RoleC {
     private final RoleS rolS;
 
     @Override
