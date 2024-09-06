@@ -1,7 +1,9 @@
 package com.plataforma.repository.impl;
 
+import com.plataforma.model.plataforma.Permission;
+import com.plataforma.model.plataforma.Rol;
 import com.plataforma.model.plataforma.SystemsUser;
-import com.plataforma.repository.SystemUserR;
+import com.plataforma.repository.SystemsUserR;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,10 +13,26 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class SystemUsereImplR implements SystemUserR {
+public class SystemUsereImplR implements SystemsUserR {
     private final JdbcTemplate db;
     private String sql;
 
+    @Override
+    public SystemsUser findSystemUserByUsername(String username) {
+        sql = "SELECT su.* FROM systems_user su WHERE su.username = ? AND status = true;";
+        return db.queryForObject(sql, BeanPropertyRowMapper.newInstance(SystemsUser.class), username);
+    }
+
+    @Override
+    public List<Rol> findRolListByUser(Integer systemUserId) {
+        sql = "SELECT r.* FROM rol r INNER JOIN user_rol ur ON ur.rol_id = r.id AND ur.system_user_id = ? WHERE r.status = true;";
+        return db.query(sql, BeanPropertyRowMapper.newInstance(Rol.class), systemUserId);
+    }
+    @Override
+    public List<Permission> findPermissionListByRol(Integer roleId) {
+        sql = "SELECT p.* FROM permission p INNER JOIN rol_permission rp ON rp.permission_id =p.id  AND rp.rol_id  = ? WHERE p.status = true;";
+        return db.query(sql, BeanPropertyRowMapper.newInstance(Permission.class), roleId);
+    }
     @Override
     public List<SystemsUser> findAll() {
         sql = "SELECT * FROM systems_user WHERE status = true;";
