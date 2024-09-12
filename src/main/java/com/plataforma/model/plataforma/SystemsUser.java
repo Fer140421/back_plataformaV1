@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class SystemsUser {
-    private Integer id;
+    private Long id;
     private String alias;
     private String email;
     private String username;
@@ -18,10 +18,11 @@ public class SystemsUser {
     private String cell;
     private String codeCell;
     private Boolean status;
-    private LocalDateTime dateStarVerification;
+    private LocalDateTime dateStartVerification;
     private LocalDateTime dateEndVerification;
     private Boolean isEnabled;
     private Boolean accountNoExpired;
     private Boolean accountNoLocked;
     private Boolean credentialNoExipred;
+
 }

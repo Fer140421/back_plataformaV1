@@ -1,5 +1,6 @@
 package com.plataforma.service;
 
+import com.plataforma.controller.request.AuthCreateUserRequest;
 import com.plataforma.controller.request.AuthLoginRequest;
 import com.plataforma.controller.response.AuthResponse;
 import com.plataforma.model.plataforma.SystemsUser;
@@ -10,15 +11,19 @@ import org.springframework.security.core.Authentication;
 public interface SystemsUserS {
     ResponseEntity<ApiResponse> findAll();
 
-    ResponseEntity<ApiResponse> findById(Integer id);
+    SystemsUser findById(Long id);
 
     ResponseEntity<ApiResponse> save(SystemsUser user);
 
     ResponseEntity<ApiResponse> update(SystemsUser user);
 
-    ResponseEntity<ApiResponse> deleteById(Integer id);
+    ResponseEntity<ApiResponse> deleteById(Long id);
 
     AuthResponse loginUser(AuthLoginRequest authLoginRequest);
 
     Authentication authenticate(String username, String password);
+
+    AuthResponse createUser(AuthCreateUserRequest authCreateUserRequest);
+
+    SystemsUser findSystemUserByEmail(String email);
 }

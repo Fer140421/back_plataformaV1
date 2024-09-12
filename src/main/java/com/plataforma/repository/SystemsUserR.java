@@ -10,17 +10,19 @@ public interface SystemsUserR {
 
     SystemsUser findSystemUserByUsername(String username);
 
-    List<Rol> findRolListByUser(Integer systemUserId);
+    List<Rol> findRolListByUser(Long systemUserId);
 
     List<Permission> findPermissionListByRol(Integer roleId);
 
     List<SystemsUser> findAll();
 
-    SystemsUser getById(Integer id);
+    SystemsUser getById(Long id);
 
-    Integer save(SystemsUser user);
+   SystemsUser save(SystemsUser user);
 
     boolean update(SystemsUser user);
 
-    boolean deleteById(Integer id);
+    boolean deleteById(Long id);
+
+    SystemsUser findSystemUserByEmail(String email);
 }

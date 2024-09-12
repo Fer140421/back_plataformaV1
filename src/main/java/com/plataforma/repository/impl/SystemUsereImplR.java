@@ -24,7 +24,7 @@ public class SystemUsereImplR implements SystemsUserR {
     }
 
     @Override
-    public List<Rol> findRolListByUser(Integer systemUserId) {
+    public List<Rol> findRolListByUser(Long systemUserId) {
         sql = "SELECT r.* FROM rol r INNER JOIN user_rol ur ON ur.rol_id = r.id AND ur.system_user_id = ? WHERE r.status = true;";
         return db.query(sql, BeanPropertyRowMapper.newInstance(Rol.class), systemUserId);
     }
@@ -40,18 +40,18 @@ public class SystemUsereImplR implements SystemsUserR {
     }
 
     @Override
-    public SystemsUser getById(Integer id) {
+    public SystemsUser getById(Long id) {
         sql = "SELECT * FROM systems_user WHERE id = ?;";
         return db.queryForObject(sql, BeanPropertyRowMapper.newInstance(SystemsUser.class), id);
     }
 
     @Override
-    public Integer save(SystemsUser user) {
+    public SystemsUser save(SystemsUser user) {
         sql = "INSERT INTO systems_user (id,alias, email, username, password, cell, code_cell, status,date_start_verification,date_end_verification, is_enabled, account_no_expired, account_no_locked, credential_no_exipred) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING *;";
         return db.queryForObject(sql,
-                new Object[]{user.getId(),user.getAlias(), user.getEmail(), user.getUsername(), user.getPassword(), user.getCell(), user.getCodeCell(), user.getStatus(), user.getDateStarVerification(),user.getDateEndVerification(),user.getIsEnabled(), user.getAccountNoExpired(), user.getAccountNoLocked(), user.getCredentialNoExipred()},
-                Integer.class);
+                BeanPropertyRowMapper.newInstance(SystemsUser.class),user.getId(),user.getAlias(), user.getEmail(), user.getUsername(), user.getPassword(), user.getCell(), user.getCodeCell(), user.getStatus(), user.getDateStartVerification(),user.getDateEndVerification(),user.getIsEnabled(), user.getAccountNoExpired(), user.getAccountNoLocked(), user.getCredentialNoExipred()
+                );
     }
 
     @Override
@@ -59,12 +59,19 @@ public class SystemUsereImplR implements SystemsUserR {
         sql = "UPDATE systems_user SET alias = ?, email = ?, username = ?, password = ?, cell = ?, code_cell = ?, status = ?,date_start_verification = ? , date_end_verification = ?, is_enabled = ?, account_no_expired = ?, account_no_locked = ?, credential_no_exipred = ? " +
                 "WHERE id = ?;";
         return db.update(sql,
-                user.getAlias(), user.getEmail(), user.getUsername(), user.getPassword(), user.getCell(), user.getCodeCell(), user.getStatus(), user.getDateStarVerification(), user.getDateEndVerification(),user.getIsEnabled(), user.getAccountNoExpired(), user.getAccountNoLocked(), user.getCredentialNoExipred(), user.getId()) > 0;
+                user.getAlias(), user.getEmail(), user.getUsername(), user.getPassword(), user.getCell(), user.getCodeCell(), user.getStatus(), user.getDateStartVerification(), user.getDateEndVerification(),user.getIsEnabled(), user.getAccountNoExpired(), user.getAccountNoLocked(), user.getCredentialNoExipred(), user.getId()) > 0;
     }
 
     @Override
-    public boolean deleteById(Integer id) {
+    public boolean deleteById(Long id) {
         sql = "UPDATE systems_user SET status = false WHERE id = ?;";
         return db.update(sql, id) > 0;
     }
+
+    @Override
+    public SystemsUser findSystemUserByEmail(String email) {
+        sql = "SELECT * FROM systems_user WHERE email = ?;";
+        return db.queryForObject(sql, new Object[]{email}, BeanPropertyRowMapper.newInstance(SystemsUser.class));
+    }
+
 }

@@ -27,17 +27,17 @@ public class PersonImplR implements PersonR {
     }
 
     @Override
-    public Integer save(Person obj) {
+    public Long save(Person obj) {
         sql = "INSERT INTO person(ci,first_lastename,gender,name,second_lastname) VALUES(?,?,?,?,?) RETURNING id; ";
-        return db.queryForObject(sql, new Object[]{obj.getCi(), obj.getFirst_lastename(), obj.getGender(), obj.getName(), obj.getSecond_lastname()}, Integer.class);
+        return db.queryForObject(sql, new Object[]{obj.getCi(), obj.getFirstLastName(), obj.getGender(), obj.getName(), obj.getSecondLastName()}, Long.class);
     }
 
     @Override
     public boolean updateById(Person persona, Long id){
         sql = "UPDATE person set ci = ?, first_lastename = ?, gender = ?,name = ?, second_lastname = ? where id = ?;";
-        return db.update(sql,persona.getCi(), persona.getFirst_lastename(),
+        return db.update(sql,persona.getCi(), persona.getFirstLastName(),
                 persona.getGender(), persona.getName(),
-                persona.getSecond_lastname(), id)>0;
+                persona.getSecondLastName(), id)>0;
     }
 
     @Override

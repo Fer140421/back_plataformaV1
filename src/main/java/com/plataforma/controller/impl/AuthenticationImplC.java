@@ -1,6 +1,7 @@
 package com.plataforma.controller.impl;
 
 import com.plataforma.controller.AuthenticationC;
+import com.plataforma.controller.request.AuthCreateUserRequest;
 import com.plataforma.controller.request.AuthLoginRequest;
 import com.plataforma.controller.response.AuthResponse;
 import com.plataforma.service.SystemsUserS;
@@ -23,5 +24,12 @@ private final SystemsUserS systemsUserS;
     @PostMapping("log-in")
     public ResponseEntity<AuthResponse> login(@RequestBody @Valid AuthLoginRequest userRequest) {
         return new ResponseEntity<AuthResponse>(systemsUserS.loginUser(userRequest), HttpStatus.OK);
+    }
+
+
+    @Override
+    @PostMapping("sign-up")
+    public ResponseEntity<AuthResponse> register(@RequestBody @Valid AuthCreateUserRequest authCreateUser) {
+        return new ResponseEntity<>(systemsUserS.createUser(authCreateUser), HttpStatus.CREATED);
     }
 }

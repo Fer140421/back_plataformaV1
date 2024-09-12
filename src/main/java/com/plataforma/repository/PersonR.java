@@ -7,7 +7,7 @@ import java.util.List;
 public interface PersonR {
     List<Person> findAll();
     Person getById(Long id);
-    Integer save(Person obj);
+    Long save(Person obj);
     boolean updateById(Person obj, Long id);
     boolean deleteById(Long id);
 }

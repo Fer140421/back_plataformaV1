@@ -10,7 +10,7 @@ public interface SystemsUserC {
     ResponseEntity<ApiResponse> findAll();
 
     @GetMapping("findById/{id}")
-    ResponseEntity<ApiResponse> findById(@PathVariable int id);
+    SystemsUser findById(@PathVariable Long id);
 
     @PostMapping("save")
     ResponseEntity<ApiResponse> save(@RequestBody SystemsUser user);
@@ -19,5 +19,5 @@ public interface SystemsUserC {
     ResponseEntity<ApiResponse> update(@RequestBody SystemsUser user);
 
     @PutMapping("deleteById/{id}")
-    ResponseEntity<ApiResponse> deleteById(@PathVariable int id);
+    ResponseEntity<ApiResponse> deleteById(@PathVariable Long id);
 }

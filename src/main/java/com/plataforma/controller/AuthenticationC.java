@@ -1,5 +1,6 @@
 package com.plataforma.controller;
 
+import com.plataforma.controller.request.AuthCreateUserRequest;
 import com.plataforma.controller.request.AuthLoginRequest;
 import com.plataforma.controller.response.AuthResponse;
 import jakarta.validation.Valid;
@@ -10,4 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface AuthenticationC {
     @PostMapping("log-in")
     ResponseEntity<AuthResponse> login(@RequestBody @Valid AuthLoginRequest userRequest);
+
+    @PostMapping("sign-up")
+    ResponseEntity<AuthResponse> register(@RequestBody @Valid AuthCreateUserRequest authCreateUser);
 }

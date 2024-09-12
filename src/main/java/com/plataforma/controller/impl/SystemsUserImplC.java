@@ -24,7 +24,7 @@ public class SystemsUserImplC implements SystemsUserC {
     @GetMapping("findById/{id}")
     @PreAuthorize("hasAuthority('GET')")
     @Override
-    public ResponseEntity<ApiResponse> findById(@PathVariable int id) {return systemsUserS.findById(id);}
+    public SystemsUser findById(@PathVariable Long id) {return systemsUserS.findById(id);}
 
     @PostMapping("save")
     @PreAuthorize("hasAuthority('CREATE')")
@@ -39,7 +39,7 @@ public class SystemsUserImplC implements SystemsUserC {
     @PutMapping("deleteById/{id}")
     @PreAuthorize("hasAuthority('DELETE')")
     @Override
-    public ResponseEntity<ApiResponse> deleteById(@PathVariable int id) {
+    public ResponseEntity<ApiResponse> deleteById(@PathVariable Long id) {
         return systemsUserS.deleteById(id);
     }
 

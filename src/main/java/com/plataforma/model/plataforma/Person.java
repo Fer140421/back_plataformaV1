@@ -8,9 +8,9 @@ import lombok.*;
 public class Person {
     private Long id;
     private String ci;
-    private String first_lastename;
+    private String firstLastName;
     private String gender;
     private String name;
-    private String second_lastname;
+    private String secondLastName;
     private Boolean status;
 }
